@@ -1,0 +1,112 @@
+<style>
+  .ace_editor { height:100% }
+  .sortable-handle{
+    cursor: move;
+  }
+
+  .header-container{
+    padding:  5px 10px;
+    border-bottom: 3px solid gray;
+  }
+
+    .header-container-title{
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+  .header-container + .ui-splitbar{
+     display: none;
+  }
+
+  .slides-list-container{
+    padding: 10px;
+    background: #EDEFF2;
+  }
+
+  .preview-container{
+
+  }
+
+</style>
+
+<div ui-layout="{ flow : 'row' }">
+  <div ui-layout-container size='50px' min-size='50px' max-size='50px' class='header-container'>
+
+    <div class='header-container-title pull-left'>
+      {{ vm.presentation.name || 'Unamed Presentation' }}
+    </div>
+
+    <div class='pull-right'>
+      <button class='btn btn-primary' ng-disabled='vm.form.$invalid' ng-click='vm.onSave()'>
+        <i class='fa fa-save'></i>
+        Save
+      </button>
+      <button class='btn btn-danger' ui-sref='presentations'>
+        <i class='fa fa-save'></i>
+        Cancel
+      </button>
+    </div>
+
+  </div>
+  <div ui-layout-container>
+    <div ui-layout="{ flow : 'column' }">
+        <div ui-layout-container size='200px' class='slides-list-container'>
+
+          <form name='vm.form'>
+            <div class='form-group' ng-class="{ 'has-error': vm.form.name.$invalid }">
+              <label> Name </label>
+              <input name='name' type='text' class='form-control' ng-model='vm.presentation.name' required />
+            </div>
+          </form>
+
+          <hr />
+
+          <button class='btn btn-primary btn-block' ng-click='vm.onAddSlide()'>
+            <i class='fa fa-plus' />
+            Add New Slide
+          </button>
+          <br />
+
+          <ul class='nav nav-pills nav-stacked' ui-sortable='vm.sortableOptions' ng-model="vm.slides">
+             <li ng-repeat='slide in vm.slides' ng-class='{ active: slide == vm.selected }' ng-click='vm.onSlideSelect( slide )'>
+               <a href="javascript:void(0)">
+                 {{ slide.name || 'Slide ' + ($index + 1) }}
+                 <div class='pull-right'>
+                   <i class="fa fa-close" ng-click-confirm='vm.onRemoveSlide( slide )'></i>
+                   &nbsp;
+                   <i class="fa fa-bars sortable-handle"></i>
+                 </div>
+               </a>
+             </li>
+          </ul>
+
+        </div>
+        <div ui-layout-container>
+
+          <div class='form-inline' style='padding:0 12px'>
+            <div class="form-group">
+              <select ng-model='vm.selected.halign' ng-change='vm.onSlideContentChange()' class='form-control'>
+                <option value='' disabled> Horizontal Alignment </option>
+                <option value='left'>Left</option>
+                <option value='center'>Center</option>
+                <option value='middle'>Right</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select ng-model='vm.selected.valign' ng-change='vm.onSlideContentChange()' class='form-control'>
+                <option value='' disabled> Vertical Alignment </option>
+                <option value='top'>Top</option>
+                <option value='middle'>Middle</option>
+              </select>
+            </div>
+          </div>
+
+          <div ui-ace ng-model='vm.selected.content' ng-change='vm.onSlideContentChange()'></div>
+
+        </div>
+        <div ui-layout-container class='preview-container'>
+          <remark source='vm.content' api='vm.remarkApi' slide-index='vm.slideIndex' on-slide-change='vm.onSlideChange(slideIndex)'></remark>
+        </div>
+    </div>
+  </div>
+</div>

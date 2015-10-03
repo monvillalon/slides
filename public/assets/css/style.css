@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { 
+  margin:       0;
+  padding:      0;
+}
+
+.remark-slide-container{
+  font-family: 'Droid Serif';
+}
+
+.remark-slide-container h1, 
+.remark-slide-container h2, 
+.remark-slide-container h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+
+.remark-slide-container h1 + h2{
+  margin-top: -10px;
+}
+
+/* Utility Classes */
+.remark-slide-container .important{ color: #920032;   font-weight:bold; font-family: monospace;}
+
+/* Slide code */
+.remark-code, .remark-inline-code { 
+  font-family: 'Ubuntu Mono'; 
+}
+
+/* Slide background */
+.remark-slide-content{
+  background-image:    url("/assets/images/logo_transparent.png");
+  background-position: bottom left;
+}
+
+/* Ordered Lists */
+.remark-slide-container  ol{
+  list-style-type: none ;
+}
+
+  .remark-slide-container ol > li {
+      counter-increment: step-counter;
+  }
+
+    .remark-slide-container ol > li:before{
+      display:          inline-block;
+      content:          counter(step-counter);
+      margin-right:     5px;
+      font-size:        80%;
+      background-color: rgb(200,200,200);
+      color:            white;
+      font-weight:      bold;
+      padding:          2px 8px;
+      border-radius:    3px;
+      border:           1px solid #aaa;
+    }
+
+/* Tables */
+.remark-slide-content table{
+  width: 100%;
+}
+
+  .remark-slide-content table tr{
+    border-bottom: 1px solid #efefef;
+  }
+
+  .remark-slide-content table tr th,
+  .remark-slide-content table tr td{
+    padding: 3px 5px;
+
+  }

@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" ng-click="$dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">
+    {{ title }}
+  </h4>
+</div>
+<div class="modal-body">
+  {{ content }}
+</div>
+<div class="modal-footer">
+  <button class='{{  okButtonClass }}' ng-click="$close()">
+    <i class='{{ okIconClass }}'></i>
+    {{ okLabel }}
+  </button>
+  <button class='{{ cancelButtonClass }}' ng-click="$dismiss()">
+    <i class='{{ cancelIconClass }}'></i>
+    {{ cancelLabel }}
+  </button>
+</div>

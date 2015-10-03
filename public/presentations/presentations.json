@@ -1,0 +1,10 @@
+[
+	{ 
+		"source": "/presentations/introduction.md" ,
+		"title":  "OnBoarding"
+	},
+	{ 
+		"source": "/presentations/command-line.md" ,
+		"title":  "Learning the Command Line"
+	}
+]
