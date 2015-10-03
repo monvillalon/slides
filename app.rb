@@ -1,26 +1,25 @@
+require 'bundler/setup'
+require 'sinatra/base'
 require 'pry'
 require 'json'
 require 'sinatra'
-require "sinatra/namespace"
 require 'sinatra/json'
-require './models/Course'
-require './models/Presentation'
-require './models/Slide'
+Dir["./models/*.rb"].each {|file| require file }
 
-enable :sessions
+class SlidesApp < Sinatra::Application
 
-#Serve the index document
-get '/' do
-  File.read(File.join('public', 'index.html'))
-end
+  enable :sessions
 
-namespace '/api' do
+  #Serve the index document
+  get '/' do
+    File.read(File.join('public', 'index.html'))
+  end
 
-  get '/courses' do
+  get '/api/courses' do
     json Course.all
   end
 
-  get '/courses/:course' do
+  get '/api/courses/:course' do
 
     begin
       json Course.find( params[:course] )
@@ -30,7 +29,7 @@ namespace '/api' do
 
   end
 
-  get '/courses/:course/presentations' do
+  get '/api/courses/:course/presentations' do
 
     begin
       json Course.find( params[:course] ).presentations
@@ -40,13 +39,13 @@ namespace '/api' do
 
   end
 
-  post '/courses/:course/presentations' do
+  post '/api/courses/:course/presentations' do
     body         = JSON.parse request.body.read
     presentation = Presentation.new
     presentation_save( params[:course] , presentation , body )
   end
 
-  get '/courses/:course/presentations/:presentation' do
+  get '/api/courses/:course/presentations/:presentation' do
 
     begin
       content_type :json
@@ -57,13 +56,13 @@ namespace '/api' do
 
   end
 
-  put '/courses/:course/presentations/:presentation' do
+  put '/api/courses/:course/presentations/:presentation' do
     body         = JSON.parse request.body.read
     presentation = Presentation.find( params[:presentation] )
     presentation_save( presentation.course_id , presentation , body )
   end
 
-  delete '/courses/:course/presentations/:presentation' do
+  delete '/api/courses/:course/presentations/:presentation' do
     presentation = Presentation.find( params[:presentation] )
     presentation.delete
   end
@@ -108,7 +107,7 @@ namespace '/api' do
 
   end
 
-  get '/courses/:course/presentations/:presentation/slides' do
+  get '/api/courses/:course/presentations/:presentation/slides' do
 
     begin
       json Presentation.find( params[:presentation] ).slides
@@ -118,8 +117,11 @@ namespace '/api' do
 
   end
 
-end
+  not_found do
+    "Not Found"
+  end
 
-not_found do
-  "Not Found"
+  #Start if executed directly
+  run! if app_file == $0
+
 end
