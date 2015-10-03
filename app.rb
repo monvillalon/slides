@@ -6,7 +6,7 @@ require 'sinatra'
 require 'sinatra/json'
 Dir["./models/*.rb"].each {|file| require file }
 
-class SlidesApp < Sinatra::Application
+#class SlidesApp < Sinatra::Application
 
   enable :sessions
 
@@ -122,6 +122,6 @@ class SlidesApp < Sinatra::Application
   end
 
   #Start if executed directly
-  run! if app_file == $0
+#  run! if app_file == $0
 
-end
+#end
