@@ -1,5 +1,3 @@
-require 'sinatra/activerecord'
-
 class Presentation < ActiveRecord::Base
   belongs_to :course
   has_many   :slides

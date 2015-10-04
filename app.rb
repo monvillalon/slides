@@ -1,17 +1,19 @@
 require './env'
 require 'bundler/setup'
-require 'sinatra/base'
-require 'pry'
 require 'json'
 require 'sinatra'
 require 'sinatra/json'
-Dir["./models/*.rb"].each {|file| require file }
+require 'sinatra/activerecord'
+Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|file| require file }
 
-class SlidesApplication < Sinatra::Application
+class SlidesApplication < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
-  
   enable :sessions
+
+  configure :development, :test do
+    require 'pry'
+  end
 
   #Serve the index document
   get '/' do
