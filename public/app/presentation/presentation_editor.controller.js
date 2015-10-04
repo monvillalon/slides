@@ -24,6 +24,8 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
   vm.onSlideSelect             = onSlideSelect;
   vm.onSlideChange             = onSlideChange;
   vm.onSlideContentChange      = onSlideContentChange;
+  vm.onImport                  = onImport;
+  vm.onExport                  = onExport;
   vm.onSave                    = onSave;
 
   return init();
@@ -55,11 +57,14 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
       }
   }
 
-  function onAddSlide(){
+  function onAddSlide( content , halign , valign  ){
+    content = content || "";
+    halign  = halign  || "left";
+    valign  = valign  || "top";
     vm.slides.push({
-      'content': '' ,
-      'valign':  'top',
-      'halign':  'left'
+      'content': content ,
+      'valign':  valign,
+      'halign':  halign
     });
     vm.slideIndex = vm.slides.length - 1;
     updatePresentationContent();
@@ -117,7 +122,47 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
             content += "\n---\n";
           }
       });
-      vm.content = content;
+      return vm.content = content;
+  }
+
+  function onImport( file ){
+     var reader = new FileReader();
+     reader.onload = function (e) {
+
+       var content = e.target.result;
+       var slides  = content.split(/^---\s*/mg);
+       vm.slides = [];
+       slides.forEach( function( slide ){
+
+           //Extract class
+           var regexp = /^\s*class:\s(.+)\n/;
+           var header = slide.match(regexp);
+           var halign = null;
+           var valign = null;
+           if( header ){
+           	header[1].split(",").forEach( function( i ){
+
+           		if( ["left","center","right"].indexOf( i.trim()) != -1 ){
+           			halign = i.trim();
+           		}
+           		if( ["top","middle","bottom"].indexOf( i.trim()) != -1 ){
+           			valign = i.trim();
+           		}
+           	});
+           	slide = slide.replace( regexp , "" );
+           }
+
+           onAddSlide( slide, halign , valign );
+       });
+
+     }
+     reader.readAsText( file );
+  }
+
+  function onExport(){
+    var content = updatePresentationContent();
+    content = "data:text/markdown," + encodeURIComponent(content);
+    window.open(content, 'export');
   }
 
   function onSave(){

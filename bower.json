@@ -25,6 +25,7 @@
     "font-awesome": "fontawesome#~4.4.0",
     "jquery": "~2.1.4",
     "jquery-ui": "jquery.ui#~1.11.4",
+    "ng-file-upload": "~9.0.5",
     "ngstorage": "ng-storage#~0.4.2",
     "remark": "~0.12.0"
   }

@@ -4,6 +4,7 @@ angular.module('app.presentation' , [
   'ui.ace',
   'ui.layout',
   'ui.sortable',
+  'ngFileUpload',
   'ngClickConfirm',
   'app.remark'
 ]).config( PresentationModuleConfig );
