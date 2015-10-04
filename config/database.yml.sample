@@ -1,6 +1,0 @@
-development:
-  adapter:  mysql
-  host:     127.0.0.1
-  username: USERNAME
-  password: PASSWORD
-  database: DBNAME
