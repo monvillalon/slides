@@ -6,7 +6,7 @@ require 'sinatra/json'
 require 'sinatra/activerecord'
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|file| require file }
 
-class SlidesApplication < Sinatra::Base
+class SlidesApplication < Sinatra::Application
 
   register Sinatra::ActiveRecordExtension
   enable :sessions
@@ -125,5 +125,7 @@ class SlidesApplication < Sinatra::Base
   not_found do
     "Not Found"
   end
+
+  run! if __FILE__ == $0
 
 end
