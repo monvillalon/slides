@@ -25,6 +25,8 @@ function RemarkDirective( $localStorage , $timeout ){
       //Create Slideshow
       $scope.api = remark.create({
         highlightLanguage: 'ruby' ,
+        highlightStyle:    'monokai',
+        highlightLines:     true,
         container:          $element[0]
       });
 

@@ -32,7 +32,7 @@ body {
 
 /* Slide background */
 .remark-slide-content{
-  background-image:    url("/assets/images/logo_transparent.png");
+  background-image:    url("/assets/images/codetrotters_transparent.png");
   background-position: bottom left;
 }
 

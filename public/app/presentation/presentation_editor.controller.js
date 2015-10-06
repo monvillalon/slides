@@ -177,7 +177,7 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
       });
 
       PresentationService.save( Course.id , body ).then( function( data ){
-          $state.go('^');
+          //$state.go('^');
       });
 
   }

@@ -5,7 +5,7 @@ class Presentation < ActiveRecord::Base
   def content
      content = ""
      size   = slides.size
-     slides.each_with_index do | slide , i |
+     slides.sort_by(&:position).each_with_index do | slide , i |
        unless slide.halign.chomp.empty? and slide.valign.chomp.empty?
          content += "class: " + [slide.halign , slide.valign ].join(",") + "\n"
        end
