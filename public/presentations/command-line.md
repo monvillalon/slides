@@ -1,7 +1,10 @@
+class: left,top
 class: center, middle
 #Learning the Command Line
 
+
 ---
+class: left,top
 #Lets run some commands
 ##and see what happens
 
@@ -21,7 +24,33 @@ $ telnet towel.blinkenlights.nl
 
 *echo* , *say* and *telnet* are **commands** everything else is an argument
 
+
 ---
+class: left,top
+#Anatomy of a command
+
+```bash
+COMMAND [-flags] [argument1] [argument2]
+```
+
+A command that does the same thing every time is not very useful.
+That is why a command can accept **arguments** to change its
+behaviour.
+
+Arguments can take many forms
+-  $ echo hello
+-  $ echo "hello world"
+-  $ cp source target
+-  $ ls -l -a
+-  $ ls -la
+-  $ find . -name "*.txt"
+-  $ ruby -v
+-  $ ruby --version
+
+
+---
+class: left,top
+
 #Navigating
 
 ###Knowing where you are
@@ -45,7 +74,10 @@ drwxr-xr-x+ 87 your_username  staff  2958 Oct  1 07:59 ..
 -rw-r--r--   1 your_username  staff     0 Oct  1 07:58 MYFILE.txt
 -rw-r--r--   1 your_username  staff     0 Oct  1 07:58 YET_ANOTHER_FILE.txt
 ```
+
 ---
+class: left,top
+
 #Lets create a folder, and move to it
 
 **Create a folder**
@@ -73,7 +105,10 @@ $ cd test
 $ pwd
 /home/your_username/my_folder
 ```
+
 ---
+class: left,top
+
 
 #Navigating ( part II )
 
@@ -98,7 +133,10 @@ $ pwd
 /Users/your_username/
 ```
 
+
 ---
+class: left,top
+
 
 #Working with files ( part I )
 
@@ -124,7 +162,10 @@ $ less MYFILE.txt
 ```
 to quit press **q**
 
+
 ---
+class: left,top
+
 #Working with files ( part II )
 
 **Lets copy the file**
@@ -139,7 +180,10 @@ $ cat MYFILECOPY.txt
 THIS IS A TEST
 ```
 
+
 ---
+class: left,top
+
 #Working with files ( part III )
 
 **Lets rename a file**
@@ -155,7 +199,10 @@ $ ls -l
 -rw-r--r--  1 your_username  staff  15 Oct  1 09:18 MYFILERENAMED.txt
 ```
 
+
 ---
+class: left,top
+
 #Working with files ( part IV )
 
 **Lets delete a file**
@@ -172,7 +219,10 @@ $ ls -l
 
 .important[Important:] Be careful! there is no Trash or Recycling bin in the console
 
+
 ---
+class: left,top
+
 #Working with files ( part V )
 
 **Removing Directories**
@@ -195,7 +245,10 @@ $ ls -l
 ```
 .important[Important:] Be careful! there is no Trash or Recycling bin in the console
 
+
 ---
+class: left,top
+
 #Wildcards
 
 *Most Commands to respond to wildcards, so they work on more than one file at a time*
@@ -218,7 +271,10 @@ $ rm *.txt
 
 .important[Important:] Be careful! there is no Trash or Recycling bin in the console
 
+
 ---
+class: left,top
+
 #Hidden files
 
 Hidden files start with a dot character ( **.** )
@@ -230,24 +286,10 @@ $ cd
 $ ls -la
 ```
 
----
-#Arguments
-
-You may have notices some patterns when running this commands
-a command that does the same thing every time is no very useful
-so command have arguments.
-
-There are several ways to send arguments to a command
--  $ echo hello
--  $ echo "hello world"
--  $ cp source target
--  $ ls -l -a
--  $ ls -la
--  $ find . -name "*.txt"
--  $ ruby -v
--  $ ruby --version
 
 ---
+class: left,top
+
 #More useful commands ( Part I)
 
 
@@ -269,7 +311,10 @@ There are several ways to send arguments to a command
 | ps                                | See what is running               | ps
 | top                               | See what is running, graphically  | top
 
+
 ---
+class: left,top
+
 #More useful commands ( Part II)
 
 | Command                           | Usage                             | Example
@@ -283,7 +328,10 @@ There are several ways to send arguments to a command
 
 
 
+
 ---
+class: left,top
+
 #Pipes & Redirection
 
 - Every thing is a file!!!
@@ -310,7 +358,10 @@ LINE1
 LINE2
 ```
 
+
 ---
+class: left,top
+
 #Environment Variables
 
 ** Lets play with variables **
@@ -328,7 +379,10 @@ I really like blue
 ```
 $ env
 ```
+
 ---
+class: left,top
+
 #Background and Foreground
 
 
@@ -342,7 +396,7 @@ $ ping www.google.com
 $ ping www.google.com &
 ```
 
-* Well that didn't work, lets try again *
+* Well that didn't work as expected, lets try again *
 ```
 $ ping www.google.com > out.txt &
 $ fg
@@ -350,7 +404,10 @@ $ CNTR-Z
 $ less out.txt
 ```
 
+
 ---
+class: left,top
+
 #We haven't been using the mouse
 ##Lets turn it up to 11
 
@@ -362,7 +419,9 @@ $ less out.txt
 
 **TAB**    Auto-completion
 
+
 ---
+class: left,top
 #Permissions
 
 ** Since everything is a file everything has permissions
@@ -373,3 +432,9 @@ $ ls -l
 total 8
 -rw-r--r--  1 monvillalon  staff  18 Oct  1 09:45 TEST.txt
 ```
+
+---
+class: left,top
+#Resources
+
+##http://cli.learncodethehardway.org/book/
