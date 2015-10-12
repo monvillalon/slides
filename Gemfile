@@ -8,7 +8,7 @@ gem 'pry-byebug'
 gem "sinatra"
 gem "sinatra-contrib"
 gem 'sinatra-activerecord'
-gem "mysql"
+gem 'mysql2', '~> 0.3.13'
 gem "pg"
 gem "rake"
 
