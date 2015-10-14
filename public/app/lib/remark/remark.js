@@ -47,8 +47,10 @@ function RemarkDirective( $localStorage , $timeout ){
       });
 
       //Save current slide
+      var timeout = null;
       $scope.api.on('showSlide', function (slide) {
-          $timeout(function(){
+          $timeout.cancel( timeout );
+          timeout = $timeout(function(){
             $scope.slideIndex = slide.getSlideIndex();
             if($scope.onSlideChange) $scope.onSlideChange( {'slideIndex': $scope.slideIndex } );
             $localStorage.presentations[ $scope.source ] = $scope.slideIndex + 1;
