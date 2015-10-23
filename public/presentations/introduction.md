@@ -1,17 +1,16 @@
 class: center,middle
 ##On-boarding
 
-
 ---
 class: left,top
 #Setting up your computer
 ##Lets install some software
 
-1. Download and Install **Google Chrome** 
+1. Download and Install **Google Chrome**
 		http://google.com/chrome
-1. Download and install **VirtualBox** 
+1. Download and install **VirtualBox**
 		https://www.virtualbox.org
-1. Download and install **Vagrant** 
+1. Download and install **Vagrant**
 		https://www.vagrantup.com/
 1. Download Install **Git**
 		https://git-scm.com/downloads
@@ -29,7 +28,7 @@ Modify your **PATH** variable
 1. Open **Control Panel**
 2. Search for **Environment Variables**
 3. Find the **PATH** Variable
-4. Add this to the .important[END] of your **PATH** variable 
+4. Add this to the .important[END] of your **PATH** variable
 leave the previous content intact
 ```
  ;C:\Program Files\Oracle\VirtualBox
@@ -49,5 +48,5 @@ class: left,top
 class: left,top
 #Lets create our development environment
 
-We will use the provided **Vagrantfile** 
+We will use the provided **Vagrantfile**
 to create our new development environment

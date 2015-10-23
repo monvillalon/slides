@@ -74,7 +74,7 @@
           <br />
 
           <ul class='nav nav-pills nav-stacked' ui-sortable='vm.sortableOptions' ng-model="vm.slides">
-             <li ng-repeat='slide in vm.slides' ng-class='{ active: slide == vm.selected }' ng-click='vm.onSlideSelect( slide )'>
+             <li ng-repeat='slide in vm.slides track by $index' ng-class='{ active: slide == vm.selected }' ng-click='vm.onSlideSelect( slide )'>
                <a href="javascript:void(0)">
                  {{ slide.name || 'Slide ' + ($index + 1) }}
                  <div class='pull-right'>

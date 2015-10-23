@@ -62,7 +62,9 @@ body{
 ```
 
 The selector defines, what this rule applies to. In this
-case the selector applies to the **body** element
+case the selector applies to the **body** element.
+We call it a selector because is the part of the rule
+that defines, or selects, what the rule applies to.
 
 ##Declaration
 
@@ -511,7 +513,7 @@ class: left,top
 
 ---
 class: left,top
-#Class Selector
+#Class Selector ( Part I )
 
 ID Selectors are great to target a specific element but
 sometimes we want to target several ad-hoc elements.
@@ -534,9 +536,59 @@ on the
 ```
 ---
 class: left,top
+#Class Selector ( Part II )
+
+An element can have more than one clas. Lets say
+we have an html document and we want to mark
+all mentions to fruit and vegetables. We might
+have problem if we have a tomato, since depending
+on who you ask is either a fruit or a vegetable.
+
+In this case we can mark tomato as both
+a vegetable and fruit by using multiple classes
+separated by spaces
+
+```html
+<h2> Ingredients </h2>
+<ul>
+    <li class='vegetable'> Lettuce </li>
+    <li class='fruit'> Cranberies </li>
+    <li class='fruit'> Cucumber </li>
+    <li class='fruit'> Lemon </li>
+    <li class='vegetable'> Brocoli </li>
+   <li class='fruit vegetable'> Tomato </li>
+</ul>
+```
+
+---
+class: left,top
+#Class Selector ( Part III )
+
+Once we have added multiple classes we
+can use the following css
+
+```css
+.fruit{ color: red; }
+.vegetable{ color: green }
+```
+
+What color will tomato be? Well green since its
+the last rule in our file that matches.
+
+However we can style it differently by adding another rule
+```
+.fruit.vegetable{ color: yellow; }
+```
+
+This targets the elements that have both the .fruit and
+.vegetable classes
+---
+class: left,top
 #Specificity ( Part I )
 
-Let's say we have this HTML and CSS
+As we say we might have a problem when more than one
+css declaration can be applied to an element.
+Take for eample the following HTML and CSS
 
 ```html
 <h1 id='title' class='heading'>
@@ -558,15 +610,13 @@ h1{
 }
 ```
 
-We have several rules that specify the color for this specific element
-
 ---
 class: left,top
 #Specificity ( Part II )
 
 When we try it out in browser it will come up red.
 The reason for this is that **id selector** is
-more specific that a *class selector* that is more
+more *specific* that a *class selector*, that in turn is more 
 specific than a **tag selector**
 
 <div style='text-align:center'>
@@ -599,85 +649,175 @@ h1{
 ```
 ---
 class: left,top
+#Specificity ( Part IV )
+
+Sometimes there is a complicated set of css rules
+that makes it hard to figure out what declaration
+is going to take effect. Using the previous example
+we can force css to make a declaration take precedence
+by adding `!important` at the end of declaration, before `;`
+
+```css
+#title{
+    color: red;
+}
+
+.heading{
+    color: green;
+}
+
+h1{
+    color: blue !important;
+}
+```
+---
+class: left,top
 #Grouped Selectors
+
+There is a lof times were we need to specify the sames
+rules over and over again for different kinds of elements.
+CSS allows us to save a few keystrokes by separating
+different selectors with commas (`,`)
+
+In the following example, we use it to factor in
+what different headings have in common.
 
 ```css
 h1, h2, h3, h4, h5, h6{
     font-weight: bold;
 }
 
-h1{
-   font-size: 24px;
-}
+h1{ font-size: 24px; }
 
-h2{
-   font-size: 18px;
-}
+h2{ font-size: 18px; }
 
-h3{
-   font-size: 14px;
-}
+h3{ font-size: 14px; }
 
-h4 ,h5, h6 {
-   font-size: 12px;
-}
+h4 ,h5, h6 { font-size: 12px; }
 
 ```
 ---
 class: left,top
-#Nested Elements
+#Decendant Selector ( Part I )
+
+In the following example we are using  `<em>` twice,
+once inside a `<p>` and once inside an `<h2>`
+
+We could give each of the classes or ids to style them
+differently or we can use nested selectors.
+
+```html
+<header>
+    <img src='logo.jpg' />
+    <h1> All about puppies </h1>
+</header>
+<main>
+    <h2> Introduction </h2>
+*    <p> Welcome to all about <em>puppies</em> </p>
+    
+*    <h2> How does a puppy <em>look like?</em> </h2>
+    <p> 
+        <img src='puppy.jpg' width='100' height='100' />
+    </p>
+    
+</main>
+```
+---
+class: left,top
+#Decendant Selector ( Part II )
+
+To say "any element of type X that is a child of type Y"
+we can write
 
 ```css
-#introduction em{
+p em{ 
+    color: red;
+}
+
+h2 em{ 
     color: blue;
 }
 ```
 
+Note that this will affect all decendants: children; but also
+grandchildren and greatgrandchildren etc.
+
+---
+class: left,top
+#Mixing it up
+
+What if we want to select an element, with
+more than one selector. For example all `<h1>` that
+have the class `title`. We can do it with:
+
+```css
+h2.title{
+    color: red;
+}
+```
+
+Notice that there is **no space**, that would mean an element
+with the class `title` inside an h2.
+
+Similarly we can write mix the tree types of selectors
+this way
+
+```css
+h2#introduction{ color: blue; }
+
+#introduction.title{ color: blue; }
+
+h2#introduction.title{ color: green; }
+```
+
+However order is important
+<div style='text-align:center;font-size:2em'>
+<span style='color:red'>TAG</span><span style='color:blue'>#ID</span><span style='color:green'>.CLASS</span>
+</div>
+---
+class: left,top
+#Border Properties
+
+This is are some of the declarations we can use, to create
+borders.
+
+1. border-style: solid;
+1. border-color: red;
+1. border-width: 1px;
+1. border-radius: 4px;
+---
+class: left,top
+#Text Properties
+
+This is are some of the declarations we can use, to mange text
+
+1. font-size: 14px;
+1. font-family: Arial;
+1. font-weight: bold;
+1. line-height: 14px;
+1. font-style: italic;
+1. color: red;
+1. text-decoration: underline;
+1. text-transform: uppercase;
+1. text-indent: 18px;
+1. word-spacing: 20px;
+1. text-align:   center;
 
 ---
 class: left,top
 #CSS Dimensions ( Part I )
 
 1. Pixels
+1. Percent
 1. Inches
 1. Centimeters
-1. em
 
 > 0 is zero in all units so we can forgo the unit
 ---
 class: left,top
-#Text Properties
+#CSS Dimensions ( Part II )
 
-1. font-size
-1. font-family
-1. font-weight
-1. line-height
-1. font-style
-1. color
-1. text-decoration
-1. text-transform
-1. text-indent
-1. word-spacing
 
----
-class: left,top
-#Background Properties
-
-1. background-color
-1. background-image
-1. background-repeat
-1. background-attachment
-1. background-position
-1. background-size
-1. background-clip
----
-class: left,top
-#Border Properties
-
-1. border-style: solid;
-1. border-color: red;
-1. border-width: 1px;
-1. border-radius: 4px;
 ---
 class: left,top
 #Box Model ( Part I )
@@ -701,7 +841,28 @@ class: left,top
 
 ---
 class: left,top
+#Background Properties
+
+1. background-color
+1. background-image
+1. background-repeat
+1. background-attachment
+1. background-position
+1. background-size
+1. background-clip
+---
+class: left,top
 #Shorthand Properties
+
+```css
+body{
+    background: url(images/bg.gif) no-repeat top right;
+    font: italic bold .8em/1.2 Arial, sans-serif;
+    padding: 10px 5px 10px 5px; 
+    border: 1px solid red;
+}
+    
+```
 ---
 class: left,top
 #Vocabulary

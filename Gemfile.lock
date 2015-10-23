@@ -28,6 +28,7 @@ GEM
     minitest (5.8.1)
     multi_json (1.11.2)
     mysql2 (0.3.20)
+    pdfkit (0.8.2)
     pg (0.17.1)
     pry (0.10.2)
       coderay (~> 1.1.0)
@@ -63,6 +64,7 @@ GEM
     tilt (2.0.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    wkhtmltopdf-binary (0.9.9.3)
 
 PLATFORMS
   ruby
@@ -70,6 +72,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   mysql2 (~> 0.3.13)
+  pdfkit
   pg
   pry
   pry-byebug
@@ -78,6 +81,7 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord
   sinatra-contrib
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    1.10.6

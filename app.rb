@@ -37,7 +37,7 @@ class SlidesApplication < Sinatra::Application
   get '/api/courses/:course/presentations' do
 
     begin
-      json Course.find( params[:course] ).presentations
+      json Course.find( params[:course] ).presentations.order( :position )
     rescue ActiveRecord::RecordNotFound
       halt 404
     end

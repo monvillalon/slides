@@ -1,0 +1,66 @@
+html , body{
+  margin:  0;
+  padding: 0;
+  width:   100%;
+  height:  100%;
+  background: #C3C4BA;
+}
+
+.page{
+  width:    11in;
+  height:   8.5in;
+  /*page-break-after: always;*/
+}
+
+.page-content{
+   position: relative;
+   padding:  20px 80px;
+}
+
+.page-content.halign-left{
+   text-align: left;
+}
+
+.page-content.halign-center{
+   text-align: center;
+}
+
+.page-content.halign-right{
+   text-align: right;
+}
+
+.page-content.valign-top{
+
+}
+
+.page-content.valign-middle{
+  position:  relative;
+  top:       50%;
+  transform: translateY(-50%);
+}
+
+.page-content.valign-bottom{
+    /* TODO */
+}
+
+@media screen{
+
+  #document{
+    margin: 20px auto;
+    width:  11in;
+  }
+
+  .page{
+      position: relative;
+      margin-bottom: 20px;
+      background:       white;
+      border:           1px solid #ccc;
+      box-shadow:       rgb(136, 136, 136) 0px 0px 30px 0px;
+      border-radius: 4px;
+  }
+
+}
+
+@media print{
+  @page {size: landscape}
+}

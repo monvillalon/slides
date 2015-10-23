@@ -11,6 +11,8 @@ gem 'sinatra-activerecord'
 gem 'mysql2', '~> 0.3.13'
 gem "pg"
 gem "rake"
+gem "pdfkit"
+gem "wkhtmltopdf-binary"
 
 
 group :development,:test do
