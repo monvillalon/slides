@@ -79,7 +79,7 @@ class SlidesApplication < Sinatra::Application
       #Save presentation
       presentation.course_id = course_id
       presentation.name      = body['name']
-      presentation.position  = 0
+      #presentation.position  = 0
       presentation.save!
 
       # Find the slides not available in the body

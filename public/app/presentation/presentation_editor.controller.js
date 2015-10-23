@@ -43,6 +43,7 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
   }
 
   function loadSlides(){
+
       if( vm.presentation.id ){
         PresentationService.getSlides( Course.id , Presentation.id ).then( function( data ){
             vm.slides = data;
@@ -51,22 +52,36 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
             }else{
               onSlideSelect( data[0] );
             }
+
+            vm.slides.forEach( function( slide ){
+              updateSlideName( slide );
+            });
+            updatePresentationContent();
+
         });
       }else{
         onAddSlide();
+        vm.slides.forEach( function( slide ){
+          updateSlideName( slide );
+        });
+        updatePresentationContent();
       }
+
   }
 
   function onAddSlide( content , halign , valign  ){
     content = content || "";
     halign  = halign  || "left";
     valign  = valign  || "top";
-    vm.slides.push({
+    slide   = {
       'content': content ,
       'valign':  valign,
       'halign':  halign
-    });
+    };
+    updateSlideName( slide );
+    vm.slides.push( slide );
     vm.slideIndex = vm.slides.length - 1;
+
     updatePresentationContent();
   }
 
@@ -99,15 +114,19 @@ function PresentationEditorController( $scope , $timeout , $state , Presentation
   }
 
   function onSlideContentChange(){
-
-    var name = vm.selected.content.match(/^\s*#+(.+)/m);
-    if( name && name.length >= 2 ){
-      vm.selected.name = name[1];
-    }else{
-      vm.selected.name = "";
-    }
-
+    if( vm.selected )
+    updateSlideName( vm.selected );
     updatePresentationContent();
+  }
+
+  function updateSlideName( slide )
+  {
+    var name = slide.content.match(/^\s*#+(.+)/m);
+    if( name && name.length >= 2 ){
+      slide.name = name[1];
+    }else{
+      slide.name = "";
+    }
   }
 
   function updatePresentationContent(){

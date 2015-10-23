@@ -73,10 +73,12 @@
           </button>
           <br />
 
-          <ul class='nav nav-pills nav-stacked' ui-sortable='vm.sortableOptions' ng-model="vm.slides">
+          <ul id='slides' class='nav nav-pills nav-stacked' ui-sortable='vm.sortableOptions' ng-model="vm.slides">
              <li ng-repeat='slide in vm.slides track by $index' ng-class='{ active: slide == vm.selected }' ng-click='vm.onSlideSelect( slide )'>
                <a href="javascript:void(0)">
-                 {{ slide.name || 'Slide ' + ($index + 1) }}
+                 <span>
+                   {{ slide.name || 'Slide ' + ($index + 1) }}
+                 </span>
                  <div class='pull-right'>
                    <i class="fa fa-close" ng-click-confirm='vm.onRemoveSlide( slide )'></i>
                    &nbsp;
