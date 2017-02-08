@@ -4,6 +4,7 @@ require 'json'
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/activerecord'
+
 Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|file| require file }
 
 class SlidesApplication < Sinatra::Application
@@ -79,7 +80,7 @@ class SlidesApplication < Sinatra::Application
       #Save presentation
       presentation.course_id = course_id
       presentation.name      = body['name']
-      #presentation.position  = 0
+      presentation.position  = 0 # TODO Set the position as the last item
       presentation.save!
 
       # Find the slides not available in the body
@@ -96,6 +97,9 @@ class SlidesApplication < Sinatra::Application
           else
             slide = Slide.new
           end
+
+          puts i
+
           slide.content      = slideBody['content']
           slide.valign       = slideBody['valign'] || 'top'
           slide.halign       = slideBody['halign'] || 'left'

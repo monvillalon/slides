@@ -1,5 +1,5 @@
 var DOCUMENT_ID  = "#document";
-var DOCUMENT_URL = "http://localhost:9393/presentations/ruby2-control-flow.md";
+var DOCUMENT_URL = "http://localhost:9393/presentations/11-methods.md";
 
 var renderer = new marked.Renderer();
 var rendererTable = renderer.table;
@@ -24,13 +24,18 @@ var MARKED_OPTS  =   {
 };
 
 $(document).ready( function(){
-  loadPresentation();
+  loadPresentation().then( function(){
+      window.print();
+  });
 });
 
 function loadPresentation(){
+  var deferred = Q.defer();
   getPresentation( DOCUMENT_URL ).then( function( slides ){
     buildPresentation( slides );
+    deferred.resolve( );
   });
+  return deferred.promise;
 }
 
 function buildPresentation( slides ){
